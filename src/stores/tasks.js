@@ -1,39 +1,17 @@
-import { defineStore } from "pinia"
-import { ref } from "vue"
-import supabase from "../supabase/index"
+import { defineStore } from 'pinia'
+import supabase from '../supabase/index'
 
-
-/* export default defineStore('tasks', {
-   state() {
-    return {
-        taskList: [],
-    }
-   },
-   actions: {
-    async _fetchAllTasks() {      
-        const { data, error } = await supabase
+export const useTaskStore = defineStore('task',{
+    state: () => ({
+        tasks: null
+    }),
+    actions: {
+        async fetchTasks() {
+           const { data: tasks } = await supabase
             .from('tasks')
-            .select()
-        if (error) {
-            console.error(error)
-            return
+            .select("*")
+            .order('id', {ascending: false});
+           this.tasks = tasks;
         }
-        this.taskList = data
-    }
-   }
-  }) */
-
-  export const tasksStore = defineStore('tasks', () => {
-    const taskList = ref([])
-
-    async function _fetchAllTasks() {
-        const { data, error } = await supabase
-            .from('tasks')
-            .select()
-        if (error) {
-            console.error(error)
-            return
-        }
-        taskList.value = data
-    }
-  })
+    },
+});
