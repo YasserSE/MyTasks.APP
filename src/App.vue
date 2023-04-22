@@ -1,28 +1,22 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
 import { useUserStore } from '@/stores/user'
+import NavigationBar from './components/NavigationBar.vue';
 
 const store = useUserStore()
 
 const checkUser = async () => {
   await store.fetchUser()
   const user = store.$state.user
-  console.log(user.id)
+  console.log(user)
 }
 checkUser()
 
 </script>
 
 <template>
-  <nav>
-    <div>
-    <router-link to="auth">Enter</router-link>
-     </div>
-    <router-link to="logIn">Log In</router-link>
-  </nav>
-
-
+  <NavigationBar />
   <RouterView />
 </template>
 
 <style></style>
+

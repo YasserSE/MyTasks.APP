@@ -1,4 +1,5 @@
 <script setup>
+import TheWelcome from '../components/TheWelcome.vue';
 </script>
 
 <template>
@@ -6,3 +7,9 @@
     <TheWelcome />
   </main>
 </template>
+
+<style scoped>
+  nav {
+    display: flex;
+  }
+</style>
