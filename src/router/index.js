@@ -34,17 +34,22 @@ const router = createRouter({
   ]
 })
 
-
-router.beforeEach((to) => {
+router.beforeEach(async (to) => {
   const store = useUserStore()
-  const isLoggedIn = store.user != null;
 
-  if(to.meta.requiresAuth && !isLoggedIn){
-    return {
-      path: '/auth/login',
-      query: { redirect: to.fullPath}
-    }
-  } 
+  if (store.user === undefined) {
+    await store.fetchUser()
+  }
+
+  console.log('beforeEach')
+  console.log(store.user)
+  
+  if (to.meta.requiresAuth && store.user === null) {
+    return { name: 'login' }
+  }
+  if ((to.name === 'login' || to.name === 'signup') && store.user !== null) {
+    return { name: 'Home' }
+  }
 })
 
 export default router

@@ -29,17 +29,17 @@ const router = useRouter()
 const email = ref(null)
 const password = ref(null)
 const passConfirm = ref(null)
+const store = useUserStore()
+
 
 // Register Function
-// ?Se puede usar un try catch
-const store = useUserStore()
 const handleSubmit = async () => {
     console.log("hola")
     if (passConfirm.value === password.value) {
         try {
             await store.signUp(email.value, password.value)
             console.log("funciona router")
-            router.push({ name: "Home" })
+            router.push({ path: '/'})
         } catch (error) {
             alert(error)
             console.log("error")

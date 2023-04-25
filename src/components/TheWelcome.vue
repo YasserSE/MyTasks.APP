@@ -1,5 +1,5 @@
 <template>
-    <h2>Welcome <span>{{ store.user.email }}</span></h2>
+    <h2>Welcome <span>{{ store.user?.email }}</span></h2>
 </template>
 
 <script setup>

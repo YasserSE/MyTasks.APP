@@ -1,15 +1,14 @@
 <template>
     <div class="authDiv">
         <h3>Log in</h3>
-        <form @submit.prevent="handleSubmit && resetInput" id="authForm">
+        <form @submit.prevent="handleSubmit()" id="authForm">
             <div>
                 <label>Email</label><input id="email" type="email" v-model="email">
             </div>
             <div>
-                <label>Password</label><input type="password" id="password" v-model="password
-                ">
+                <label>Password</label><input type="password" id="password" v-model="password">
             </div>
-            <button type="submit">Register</button>
+            <button type="submit">Go to account</button>
         </form>
         <p>Don't have an account yet? <router-link to="/auth/signup">Create one here.</router-link></p>
     </div>
@@ -17,18 +16,31 @@
 
 
 <script setup>
-import { RouterLink } from 'vue-router';
+import { RouterLink, useRouter } from 'vue-router';
 import { useUserStore } from '@/stores/user'
 import { ref } from 'vue';
 
+//Data variables
+const router = useRouter()
 const email = ref(null)
 const password = ref(null)
-
 const store = useUserStore()
 
-const handleSubmit = () => {
-    store.signUp(email.value, password.value)
+//Log in function
+const handleSubmit = async () => {
+    console.log("Entra func")
+    try {
+        await store.logIn(email.value, password.value)
+        console.log(store.user)
+        router.push({ path: '/' })
+        console.log("entra await")
+    } catch (error) {
+        alert(error)
+        console.log("error de login")
+    }
+    resetInput()
 }
+//Complementary functions
 const resetInput = () => {
     email.value === ""
     password.value === ""
@@ -42,6 +54,7 @@ const resetInput = () => {
     width: 100%;
     flex-direction: column;
 }
+
 #authForm {
     display: flex;
     flex-direction: column;

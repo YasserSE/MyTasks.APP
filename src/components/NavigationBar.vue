@@ -9,19 +9,33 @@
             <div class="marginRight">
                 <p>open tasks: <span>{{ openTasks }}</span></p> 
             </div>
-            <router-link to="logout">Log out</router-link>
+            <button v-on:click.prevent="handleLogOut">Log out</button>
         </div>
     </nav>
 </template>
 
 <script setup>
-import { RouterLink } from 'vue-router';
+import { RouterLink, useRouter} from 'vue-router';
 import { useUserStore } from '@/stores/user'
 import { ref } from 'vue';
 
+//Data variables
 const store = useUserStore()
 const openTasks = ref(0)
+const router = useRouter()
 
+//Functions
+const handleLogOut = async () => {
+    console.log("Entra a boton")
+    try {
+        await store.logOut()
+        console.log("entra a try")
+        router.push({ name: "login"})
+    } catch (error) {
+        alert(error)
+        console.log("Error entra a catch")
+    }
+}
 </script>
 
 <style scoped>
@@ -45,7 +59,16 @@ p {
 }
 
 span {
-    color: hsla(160, 80%, 37%, 1);
+    color: hsla(160, 90%, 37%, 1);
+}
+button {
+    background-color: hsla(160, 80%, 37%, 1);
+    padding: 5px 10px;
+    border: 0px;
+    border-radius: 15px;
+}
+button:hover {
+    background-color: hsla(160, 100%, 38%, 1);
 }
 .marginRight{
     margin-right: 15px;

@@ -1,15 +1,14 @@
 <script setup>
-import { useUserStore } from '@/stores/user'
+/* import { useUserStore } from '@/stores/user' */
 import NavigationBar from './components/NavigationBar.vue';
+/* import { onMounted } from 'vue';
 
-const store = useUserStore()
+const store = useUserStore() */
 
-const checkUser = async () => {
+/* onMounted(async () => {
   await store.fetchUser()
-  const user = store.$state.user
-  console.log(user)
-}
-checkUser()
+}) */
+
 
 </script>
 
