@@ -7,7 +7,8 @@
             <h3>Open Tasks</h3>
             <div v-for="task in tasks" :key="task.id"  class="taskCard">
                 <p>{{ task.title }}</p>
-                <button>Pending</button>
+                <button v-on.click.prevent="handleComplete" class="status--Pending" v-if="!task.is_complete">Pending</button>
+                <button class="status--Complete" v-if="task.is_complete">Completed</button>
             </div>
         </div>
         <div>
@@ -40,6 +41,10 @@ const handleCreate = async () =>{
 }
 const resetForm = () => {
     taskTitle.value = ""
+}
+
+const handleComplete = async () =>{
+    console.log("hi")
 }
 
 
@@ -86,10 +91,14 @@ button {
     border-radius: 15px;
 }
 form {
-    border: #F9F9F9 1px;
-    padding: 30px 0px
+    padding: 30px 0px;
 }
 input {
     margin-left: 10px;
+    border-radius: 15px;
+    padding: 2px;
+}
+.status--Complete{
+    background-color: #3b8cf5;
 }
 </style>

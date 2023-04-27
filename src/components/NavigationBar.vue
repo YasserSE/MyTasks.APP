@@ -7,9 +7,9 @@
         </div>
         <div v-if="store.user">
             <div class="marginRight">
-                <p>open tasks: <span>{{ openTasks }}</span></p> 
+                <p>open tasks: <span>{{ tasks.length }}</span></p> 
             </div>
-            <button v-on:click.prevent="handleLogOut">Log out</button>
+            <button @click.prevent="handleLogOut">Log out</button>
         </div>
     </nav>
 </template>
@@ -17,12 +17,14 @@
 <script setup>
 import { RouterLink, useRouter} from 'vue-router';
 import { useUserStore } from '@/stores/user'
-import { ref } from 'vue';
+import { computed } from 'vue';
+import { useTaskStore } from '../stores/tasks'
 
 //Data variables
 const store = useUserStore()
-const openTasks = ref(0)
 const router = useRouter()
+const taskStore = useTaskStore()
+const tasks = computed(()=> taskStore.tasks)
 
 //Functions
 const handleLogOut = async () => {
