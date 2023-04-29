@@ -1,5 +1,5 @@
 <template>
-    <form @keyup.enter="handleCreate" @submit.prevent>
+    <form @keydown.enter="handleCreate" @submit.prevent>
         <label>New task:</label><input class="formInput" type="text" v-model="taskTitle">
     </form>
     <main>
@@ -7,7 +7,7 @@
             <h3>Open Tasks</h3>
             <div v-for="(task, index) in tasks" :key="task.id" class="taskFather">
                 <div class="taskCard" v-if="!task.is_complete">
-                    <input  class="noEditing" contenteditable @keyup.enter="updateContent(task, index)" v-model="task.title"/>
+                    <input  class="noEditing" contenteditable @keydown.enter="updateContent(task, index)" v-model="task.title"/>
                     <div class="noStyle">
                         <button v-on:click.prevent="handleComplete(task, index)" class="status--Pending">Pending</button>
                         <button v-on:click.prevent="handleDelete(task,index)" class="deleteButton">x</button>
