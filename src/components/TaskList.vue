@@ -158,7 +158,7 @@ form {
     margin-top: 10px;
 }
 .deleteButton {
-    padding: 0px 4px;
+    padding: 1px 4px;
     margin-left: 5px;
     border-radius: 50px;
     font-size: 0.8em;
