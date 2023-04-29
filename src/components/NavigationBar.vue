@@ -7,9 +7,9 @@
         </div>
         <div v-if="store.user">
             <div class="marginRight">
-                <p>open tasks: <span>{{ tasks.length }}</span></p> 
+                <p>open tasks: <span>{{ openTasks.length  }}</span></p> 
             </div>
-            <button @click.prevent="handleLogOut">Log out</button>
+            <button v-on:click.prevent="handleLogOut">Log out</button>
         </div>
     </nav>
 </template>
@@ -24,7 +24,8 @@ import { useTaskStore } from '../stores/tasks'
 const store = useUserStore()
 const router = useRouter()
 const taskStore = useTaskStore()
-const tasks = computed(()=> taskStore.tasks)
+const openTasks = computed(() => taskStore.openTasks)
+
 
 //Functions
 const handleLogOut = async () => {
@@ -46,6 +47,7 @@ nav {
     width: 100%;
     justify-content: space-between;
     padding: 0px 5%;
+    margin-bottom: 20px;
 }
 
 div {

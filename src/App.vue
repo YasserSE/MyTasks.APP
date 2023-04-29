@@ -1,13 +1,6 @@
 <script setup>
-/* import { useUserStore } from '@/stores/user' */
 import NavigationBar from './components/NavigationBar.vue';
-/* import { onMounted } from 'vue';
 
-const store = useUserStore() */
-
-/* onMounted(async () => {
-  await store.fetchUser()
-}) */
 
 
 </script>
@@ -17,5 +10,7 @@ const store = useUserStore() */
   <RouterView />
 </template>
 
-<style></style>
+<style>
+
+</style>
 
