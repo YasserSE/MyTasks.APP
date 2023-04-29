@@ -1,11 +1,11 @@
 <template>
     <div>
-        <SignUp />
+        <RegisterComp />
     </div>
 </template>
 
 <script setup>
-import SignUp from '../components/SignUP.vue';
+import RegisterComp from '../components/RegisterComp.vue';
 
 </script>
 
