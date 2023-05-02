@@ -1,6 +1,7 @@
 <template>
-    <form @keydown.enter="handleCreate" @submit.prevent>
+    <form @submit.prevent="handleCreate">
         <label>New task:</label><input class="formInput" type="text" v-model="taskTitle">
+        <button type="submit">Create</button>
     </form>
     <main>
         <div class="taskContainer">
@@ -142,9 +143,10 @@ form {
     padding: 30px 0px;
 }
 .formInput {
-    margin-left: 10px;
+    margin: 0px 10px;
     border-radius: 15px;
     padding: 2px;
+    width: 150px;
 }
 .status--Complete{
     background-color: #3b8cf5;
