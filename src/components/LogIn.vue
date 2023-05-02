@@ -8,10 +8,13 @@
             <div>
                 <label>Password</label><input type="password" id="password" v-model="password">
             </div>
-            <button type="submit">Go to account</button>
+            <v-btn variant="tonal" type="submit" class="authBtn">
+                Go to account
+            </v-btn>
         </form>
+        <v-divider color="success"></v-divider>
         <p>Don't have an account yet? <router-link to="/auth/signup">Create one here.</router-link></p>
-    </div>
+        </div>
 </template>
 
 
@@ -52,13 +55,22 @@ const resetInput = () => {
 .authDiv {
     display: flex;
     width: 100%;
+    align-items: center;
     flex-direction: column;
+    background-color: #1F1F1F;
+    padding: 30px;
+    border-radius: 15px;
 }
 
 #authForm {
     display: flex;
+    width: 100%;
     flex-direction: column;
     justify-content: space-around;
     margin-top: 30px;
+    margin-bottom: 30px;
+}
+.authBtn{
+    margin: 15px 0px;
 }
 </style>
