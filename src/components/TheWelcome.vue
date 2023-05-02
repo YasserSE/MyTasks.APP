@@ -18,9 +18,6 @@ const name = store.user.email.split("@")
 
 
 <style>
-div {
-    padding: 0px 5%;
-}
 span {
     color: hsla(160, 80%, 37%, 1);
 }
