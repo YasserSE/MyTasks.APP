@@ -1,6 +1,6 @@
 <template>
     <nav>
-        <router-link to="/">Home</router-link>
+        <router-link to="/"><img src="../assets/taskapp.png" class="navLogo"></router-link>
         <div v-if="!store.user">
             <router-link to="/auth/login" class="marginRight">LogIn</router-link>
             <router-link to="/auth/signup">SignUp</router-link>
@@ -42,6 +42,9 @@ const handleLogOut = async () => {
 </script>
 
 <style scoped>
+.navLogo{
+    width: 100px;
+}
 nav {
     display: flex;
     width: 100%;
@@ -55,7 +58,7 @@ div {
     width: fit-content;
     padding: 0;
     margin: 0;
-    justify-content: space-around;
+    align-items: center;
 }
 
 p {
