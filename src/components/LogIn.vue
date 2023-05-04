@@ -3,10 +3,10 @@
         <h3>Log in</h3>
         <form @submit.prevent="handleSubmit()" id="authForm">
             <div>
-                <label>Email</label><input id="email" type="email" v-model="email">
+                <label>Email</label><input class="input--whiteBack" id="email" type="email" v-model="email">
             </div>
             <div>
-                <label>Password</label><input type="password" id="password" v-model="password">
+                <label>Password</label><input class="input--whiteBack" type="password" id="password" v-model="password">
             </div>
             <v-btn variant="tonal" type="submit" class="authBtn">
                 Go to account
@@ -14,7 +14,7 @@
         </form>
         <v-divider color="success"></v-divider>
         <p>Don't have an account yet? <router-link to="/auth/signup">Create one here.</router-link></p>
-        </div>
+    </div>
 </template>
 
 
@@ -54,7 +54,7 @@ const resetInput = () => {
 <style scoped>
 .authDiv {
     display: flex;
-    width: 100%;
+    width: 70vw;
     align-items: center;
     flex-direction: column;
     background-color: #1F1F1F;
@@ -70,7 +70,8 @@ const resetInput = () => {
     margin-top: 30px;
     margin-bottom: 30px;
 }
-.authBtn{
+
+.authBtn {
     margin: 15px 0px;
 }
 </style>

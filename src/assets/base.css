@@ -46,7 +46,7 @@
     --color-border-hover: var(--vt-c-divider-dark-1);
 
     --color-heading: var(--vt-c-text-dark-1);
-    --color-text: var(--vt-c-text-dark-2);
+    --color-text: white;
   }
 }
 
@@ -81,4 +81,17 @@ h2 {
 }
 h3 {
   font-size: 20px;
+}
+.input--whiteBack {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.074);
+  margin: 10px 0;
+  border-radius: 10px;
+}
+.input--whiteBack:focus-visible{
+  outline: none;
+  background-color:#f8f8f8;
+}
+.btn-taskCreate{
+  background-color: hsla(160, 80%, 37%, 1);
 }
