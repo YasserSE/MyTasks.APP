@@ -40,6 +40,13 @@ export const useUserStore = defineStore('user', {
       if (error) throw error
       this.user = null
     },
+    async logInWithGoogle() {
+      const { data: { user }, error } = await supabase.auth.signInWithOAuth({
+        provider: 'google'
+      })
+      if(error) throw error
+      if (user) this.user = user
+    },
     persist: {
       enabled: true,
       strategies: [
