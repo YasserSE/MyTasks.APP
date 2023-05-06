@@ -18,6 +18,10 @@
         </form>
         <v-divider color="success"></v-divider>
         <p>Do you already have an account? <router-link to="/auth/login">Log in here.</router-link></p>
+        <br>
+        <div class="googleContainer">
+            <button @click="handleGoogle" class="googleBtn">Register with <br><img class="googleImg" src="https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png"></button>
+        </div>
     </div>
 </template>
 
@@ -37,11 +41,9 @@ const store = useUserStore()
 
 // Register Function
 const handleSubmit = async () => {
-    console.log("hola")
     if (passConfirm.value === password.value) {
         try {
             await store.signUp(email.value, password.value)
-            console.log("funciona router")
             router.push({ path: '/'})
         } catch (error) {
             alert(error)
@@ -51,6 +53,14 @@ const handleSubmit = async () => {
         alert('Please match your passwords')
     }
     resetInput()
+}
+const handleGoogle = async () => {
+    try {
+        await store.logInWithGoogle()
+    } catch (error) {
+        alert(error)
+        console.log("error de Google Auth")
+    }
 }
 //Complementary functions
 const resetInput = () => {
@@ -63,6 +73,7 @@ const resetInput = () => {
 .authDiv {
     display: flex;
     width: 70vw;
+    max-width: 500px;
     align-items: center;
     flex-direction: column;
     background-color: #1F1F1F;
@@ -80,5 +91,15 @@ const resetInput = () => {
 }
 .authBtn{
     margin: 15px 0px;
+}
+.googleImg{
+    padding: 5px;
+    width: 45px;
+}
+.googleContainer{
+    display: flex;
+    align-items: center;
+    align-self: center;
+    align-content: center;
 }
 </style>
