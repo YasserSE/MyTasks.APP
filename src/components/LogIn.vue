@@ -55,6 +55,7 @@ const resetInput = () => {
 .authDiv {
     display: flex;
     width: 70vw;
+    max-width: 500px;
     align-items: center;
     flex-direction: column;
     background-color: #1F1F1F;
