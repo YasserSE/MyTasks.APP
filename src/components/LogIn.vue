@@ -13,7 +13,7 @@
             </v-btn>
         </form>
         <v-divider color="success"></v-divider>
-        <p>Don't have an account yet? <router-link to="/auth/signup">Create one here.</router-link></p>
+        <p>Don't have an account yet? <br><router-link to="/auth/signup">Create one here.</router-link></p>
         <br>
         <div class="googleContainer">
             <button @click="handleGoogle" class="googleBtn">Log in with <br><img class="googleImg" src="https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png"></button>
@@ -26,12 +26,14 @@
 import { RouterLink, useRouter } from 'vue-router';
 import { useUserStore } from '@/stores/user'
 import { ref } from 'vue';
+import { useToast } from 'vue-toastification';
 
 //Data variables
 const router = useRouter()
 const email = ref(null)
 const password = ref(null)
 const store = useUserStore()
+const toast = useToast()
 
 //Log in function
 const handleSubmit = async () => {
@@ -40,9 +42,10 @@ const handleSubmit = async () => {
         await store.logIn(email.value, password.value)
         console.log(store.user)
         router.push({ path: '/' })
-        console.log("entra await")
     } catch (error) {
-        alert(error)
+        toast.warning("Problem with credentials. Try again.",{
+            timeout: 5000
+        })
         console.log("error de login")
     }
     resetInput()
