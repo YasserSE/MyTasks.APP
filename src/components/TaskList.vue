@@ -36,19 +36,26 @@
 import { useTaskStore } from '../stores/tasks'
 import { useUserStore } from '../stores/user'
 import { onMounted, ref, computed } from 'vue'
+import { useToast } from 'vue-toastification';
 
 //Variables
 const store = useTaskStore()
 const userStore = useUserStore()
 const taskTitle = ref()
 const tasks = computed(() => store.tasks)
+const toast = useToast()
 
 //Functions
 const handleCreate = async () => {
     try {
         await store.addTask(taskTitle.value, userStore.user.id)
+        toast.success("Task created",{
+            timeout: 2000
+        })
     } catch (error) {
-        alert(error)
+        toast.error("There was a problem with the request",{
+            timeout: 2000
+        })
     }
     resetForm()
 }
@@ -60,7 +67,9 @@ const handleComplete = async (task, index) => {
     try {
         await store.completeTask(task.id, index)
     } catch (error) {
-        alert(error)
+        toast.error("There was a problem with the request",{
+            timeout: 2000
+        })
     }
 }
 
@@ -68,7 +77,9 @@ const handleIncomplete = async (task, index) => {
     try {
         await store.incompleteTask(task.id, index)
     } catch (error) {
-        alert(error)
+        toast.error("There was a problem with the request",{
+            timeout: 2000
+        })
     }
 }
 
@@ -76,15 +87,22 @@ const handleDelete = async (task) => {
     try {
         await store.deleteTask(task.id)
         await store.fetchTasks()
+        toast.info("The task has been deleted",{
+            timeout: 1500
+        })
     } catch (error) {
-        alert(error)
+        toast.error("There was a problem with the request",{
+            timeout: 2000
+        })
     }
 }
 const updateContent = async (task, index) => {
     try {
         await store.updateTitle(task.id, index, task.title)
     } catch (error) {
-        alert(error)
+        toast.error("There was a problem with the request",{
+            timeout: 2000
+        })
     }
 }
 /* const handleFocus = (event) => {

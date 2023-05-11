@@ -17,7 +17,7 @@
             </v-btn>
         </form>
         <v-divider color="success"></v-divider>
-        <p>Do you already have an account? <router-link to="/auth/login">Log in here.</router-link></p>
+        <p>Do you already have an account? <br><router-link to="/auth/login">Log in here.</router-link></p>
         <br>
         <div class="googleContainer">
             <button @click="handleGoogle" class="googleBtn">Register with <br><img class="googleImg" src="https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png"></button>
@@ -30,6 +30,7 @@
 import { RouterLink, useRouter } from 'vue-router';
 import { useUserStore } from '@/stores/user'
 import { ref } from 'vue';
+import { useToast } from 'vue-toastification';
 
 //Data variables
 const router = useRouter()
@@ -37,6 +38,7 @@ const email = ref(null)
 const password = ref(null)
 const passConfirm = ref(null)
 const store = useUserStore()
+const toast = useToast()
 
 
 // Register Function
@@ -46,11 +48,14 @@ const handleSubmit = async () => {
             await store.signUp(email.value, password.value)
             router.push({ path: '/'})
         } catch (error) {
-            alert(error)
-            console.log("error")
+            toast.error("There is a problem. Try again.",{
+            timeout: 5000
+        })
         }
     } else {
-        alert('Please match your passwords')
+        toast.warning("Please match your password",{
+            timeout: 5000
+        })
     }
     resetInput()
 }
